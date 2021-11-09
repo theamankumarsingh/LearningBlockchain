@@ -57,8 +57,7 @@ class Blockchain:
         return True
 
 def mine_block(blockchain, data):
-    blockchain.create_block(data)
-    print("New block mined!")
+    print(blockchain.create_block(data))
 
 def show_chain(blockchain):
     for block in blockchain.chain:
