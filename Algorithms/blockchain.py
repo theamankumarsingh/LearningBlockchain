@@ -9,10 +9,9 @@ class Blockchain:
     def __init__(self):
         self.difficulty=self.difficulty%65
         self.chain = []
-        self.create_block(data = '')
 
     def create_block(self, data):
-        prev_hash='0'
+        prev_hash='0'*64
         if(self.chain!=[]):
             prev_hash=self.chain[-1]['hash']
         block = {'index': len(self.chain),
@@ -20,7 +19,7 @@ class Blockchain:
                  'timestamp': str(datetime.datetime.now()),
                  'data': data,
                  'prev_hash': prev_hash,
-                 'hash':'0'}
+                 'hash':'0'*64}
         self.PoW(block)
         self.chain.append(block)
         return block
@@ -66,7 +65,10 @@ def show_chain(blockchain):
         print(block)
 
 def check_chain(blockchain):
-    print(blockchain.is_valid_chain())
+    if(blockchain.chain==[]):
+        print("No chain!")
+    else:
+        print(blockchain.is_valid_chain())
 
 # controller
 blockchain=Blockchain()
